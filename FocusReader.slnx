@@ -1,0 +1,11 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="FocusEngine/FocusEngine.vcxproj" Id="836b79be-adf9-482e-8d7f-ade349e519b9" />
+  <Project Path="FocusReader.UI/FocusReader.UI.csproj" Id="18e5abca-653a-4900-8bc1-388e87c01aa3">
+    <BuildDependency Project="FocusEngine/FocusEngine.vcxproj" />
+  </Project>
+</Solution>

@@ -1,0 +1,37 @@
+﻿<Window x:Class="FocusReader.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FocusReader" Height="450" Width="520"
+        Closing="Window_Closing">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- On/off. AutomationProperties.Name is what a screen reader announces for this control. -->
+        <ToggleButton x:Name="EngineToggle" Grid.Row="0"
+                      Content="Start reading" Padding="12,6" HorizontalAlignment="Left"
+                      AutomationProperties.Name="Screen reader engine"
+                      Checked="EngineToggle_Checked" Unchecked="EngineToggle_Unchecked"/>
+
+        <!-- Speech rate. The Label's Target links it to the slider, so screen readers read "Speech rate". -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,16,0,0">
+            <Label Content="_Speech rate:" Target="{Binding ElementName=RateSlider}" VerticalAlignment="Center"/>
+            <Slider x:Name="RateSlider" Width="220" Minimum="-10" Maximum="10" Value="0"
+                    TickFrequency="1" IsSnapToTickEnabled="True" SmallChange="1" LargeChange="5"
+                    VerticalAlignment="Center"
+                    ValueChanged="RateSlider_ValueChanged"/>
+            <TextBlock x:Name="RateText" Text="0" Margin="8,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <TextBlock x:Name="StatusText" Grid.Row="2" Margin="0,16,0,8" Text="Stopped."
+                   AutomationProperties.LiveSetting="Polite"/>
+
+        <!-- Live log of every announcement the engine makes. -->
+        <ListBox x:Name="LogList" Grid.Row="3"
+                 AutomationProperties.Name="Announcement log"/>
+    </Grid>
+</Window>
